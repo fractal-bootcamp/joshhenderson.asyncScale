@@ -6,9 +6,9 @@ function callbackHell() {
             console.log("second callback");
             setTimeout(() => {
                 console.log("third callback");
-            })
-        })
-    })
+            }, 1000)
+        }, 1000)
+    }, 1000)
 }
 
 function promiseChain() {
@@ -36,5 +36,6 @@ function promiseChain() {
         });
 }
 
-callbackHell();
+//callbackHell();
+
 promiseChain();
