@@ -11,29 +11,31 @@ function callbackHell() {
     }, 1000)
 }
 
-function promiseChain() {
-    return new Promise((resolve) => {
+async function promiseChain() {
+    const secondPromse = new Promise((resolve) => {
         setTimeout(() => {
             console.log("first promise");
             resolve();
         }, 1000)
     })
         .then(() => {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     console.log("Second Promise");
-                    resolve();
+                    resolve("value");
                 }, 1000)
             })
         })
-        .then(() => {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    console.log("third promise");
-                    resolve();
-                }, 1000);
-            });
-        });
+
+    const reference = await secondPromse;
+
+    return new Promise((resolve) => {
+        console.log(reference)
+        setTimeout(() => {
+            console.log("third promise");
+            resolve();
+        }, 1000);
+    });
 }
 
 //callbackHell();
